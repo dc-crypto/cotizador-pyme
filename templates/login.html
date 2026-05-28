@@ -24,20 +24,22 @@
     </div>
 
     <script>
-        const supabase = window.supabase.createClient(
-            'https://kplcpanukoibdslteyfl.supabase.co',
-            'sb_publishable_dBFl-nkZjqjMeCW305J1DQ_NrRFUqSP'
-        )
+    const { createClient } = window.supabase
 
-        async function loginGoogle() {
-            const { error } = await supabase.auth.signInWithOAuth({
-                provider: 'google',
-                options: {
-                    redirectTo: window.location.origin + '/callback'
-                }
-            })
-            if (error) alert('Error: ' + error.message)
-        }
-    </script>
+    const client = createClient(
+        'https://kplcpanukoibdslteyfl.supabase.co',
+        'sb_publishable_dBFl-nkZjqjMeCW305J1DQ_NrRFUqSP'
+    )
+
+    async function loginGoogle() {
+        const { error } = await client.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: window.location.origin + '/callback'
+            }
+        })
+        if (error) alert('Error: ' + error.message)
+    }
+</script>
 </body>
 </html>
