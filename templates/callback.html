@@ -9,28 +9,30 @@
     <p>Iniciando sesión...</p>
 
     <script>
-        const supabase = window.supabase.createClient(
-            'https://kplcpanukoibdslteyfl.supabase.co',
-            'sb_publishable_dBFl-nkZjqjMeCW305J1DQ_NrRFUqSP'
-        )
+    const { createClient } = window.supabase
 
-        supabase.auth.getSession().then(async ({ data }) => {
-            const session = data.session
-            if (session) {
-                await fetch('/guardar-sesion', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        id: session.user.id,
-                        email: session.user.email,
-                        nombre: session.user.user_metadata?.full_name
-                    })
+    const client = createClient(
+        'https://kplcpanukoibdslteyfl.supabase.co',
+        'sb_publishable_dBFl-nkZjqjMeCW305J1DQ_NrRFUqSP'
+    )
+
+    client.auth.getSession().then(async ({ data }) => {
+        const session = data.session
+        if (session) {
+            await fetch('/guardar-sesion', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    id: session.user.id,
+                    email: session.user.email,
+                    nombre: session.user.user_metadata?.full_name
                 })
-                window.location.href = '/'
-            } else {
-                window.location.href = '/login'
-            }
-        })
-    </script>
+            })
+            window.location.href = '/'
+        } else {
+            window.location.href = '/login'
+        }
+    })
+</script>
 </body>
 </html>
