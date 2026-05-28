@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from database import obtener_tareas, agregar_tarea, completar_tarea, eliminar_tarea
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 @app.route("/")
 def index():
