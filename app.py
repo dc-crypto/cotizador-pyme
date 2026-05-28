@@ -3,7 +3,7 @@ from database import obtener_tareas, agregar_tarea, completar_tarea, eliminar_ta
 import os
 
 app = Flask(__name__, static_folder='static')
-app.secret_key = "clave-secreta-cambiar-en-produccion"
+app.secret_key = "1dda2d7e60f8def051e265fa045d3d917a1fdc9bae4225b8ca0e6530b56a1ddb"
 
 @app.route("/")
 def index():

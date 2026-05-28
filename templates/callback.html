@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cargando...</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <p>Iniciando sesión...</p>
+
+    <script>
+        const supabase = window.supabase.createClient(
+            'https://kplcpanukoibdslteyfl.supabase.co',
+            'sb_publishable_dBFl-nkZjqjMeCW305J1DQ_NrRFUqSP'
+        )
+
+        supabase.auth.getSession().then(async ({ data }) => {
+            const session = data.session
+            if (session) {
+                await fetch('/guardar-sesion', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        id: session.user.id,
+                        email: session.user.email,
+                        nombre: session.user.user_metadata?.full_name
+                    })
+                })
+                window.location.href = '/'
+            } else {
+                window.location.href = '/login'
+            }
+        })
+    </script>
+</body>
+</html>
