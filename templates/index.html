@@ -7,29 +7,35 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-
     <div class="container">
         <h1>📝 Mi Todo List</h1>
+        <p class="subtitulo">Organiza tu día de forma simple</p>
 
-        <!-- Formulario para agregar -->
+        <div class="stats">
+            <div class="stat">📋 {{ tareas|length }} tareas</div>
+            <div class="stat">✅ {{ tareas|selectattr('completada')|list|length }} completadas</div>
+        </div>
+
         <form action="/agregar" method="POST">
             <input type="text" name="titulo" placeholder="Nueva tarea..." required>
-            <button type="submit">Agregar</button>
+            <button type="submit">+ Agregar</button>
         </form>
 
-        <!-- Lista de tareas -->
         <ul>
-            {% for tarea in tareas %}
-            <li class="{{ 'completada' if tarea.completada else '' }}">
-                <span>{{ tarea.titulo }}</span>
-                <div class="acciones">
-                    <a href="/completar/{{ tarea.id }}">✅</a>
-                    <a href="/eliminar/{{ tarea.id }}">🗑️</a>
-                </div>
-            </li>
-            {% endfor %}
+            {% if tareas %}
+                {% for tarea in tareas %}
+                <li class="{{ 'completada' if tarea.completada else '' }}">
+                    <span class="tarea-texto">{{ tarea.titulo }}</span>
+                    <div class="acciones">
+                        <a href="/completar/{{ tarea.id }}" title="Completar">✅</a>
+                        <a href="/eliminar/{{ tarea.id }}" title="Eliminar" onclick="return confirm('¿Eliminar esta tarea?')">🗑️</a>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <div class="empty">No hay tareas aún. ¡Agrega una! 🚀</div>
+            {% endif %}
         </ul>
     </div>
-
 </body>
 </html>
