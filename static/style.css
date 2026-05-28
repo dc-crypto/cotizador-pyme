@@ -1,11 +1,12 @@
-* {
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none !important;
 }
 
 body {
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
     display: flex;
@@ -27,20 +28,35 @@ body {
 h1 {
     font-size: 1.8rem;
     color: #1a1a2e;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-weight: 700;
 }
 
 .subtitulo {
-    color: #888;
+    color: #999;
     font-size: 0.9rem;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
+}
+
+.stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.stat {
+    background: #f0f0ff;
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 600;
 }
 
 form {
     display: flex;
     gap: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 28px;
 }
 
 input[type="text"] {
@@ -52,6 +68,7 @@ input[type="text"] {
     outline: none;
     transition: all 0.2s;
     color: #333;
+    background: white;
 }
 
 input[type="text"]:focus {
@@ -61,4 +78,86 @@ input[type="text"]:focus {
 
 button {
     padding: 14px 22px;
-    backgr
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(102,126,234,0.4);
+}
+
+ul {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+li {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 16px 18px !important;
+    background: #f8f9ff !important;
+    border-radius: 14px !important;
+    border-left: 4px solid #667eea !important;
+    list-style: none !important;
+    transition: all 0.2s;
+}
+
+li:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+li.completada {
+    background: #f5f5f5 !important;
+    border-left-color: #ccc !important;
+    opacity: 0.6;
+}
+
+li.completada .tarea-texto {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.tarea-texto {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.acciones {
+    display: flex;
+    gap: 6px;
+}
+
+.acciones a {
+    text-decoration: none;
+    font-size: 1.1rem;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.acciones a:hover {
+    background: #ebebeb;
+}
+
+.empty {
+    text-align: center;
+    padding: 40px;
+    color: #bbb;
+    font-size: 0.95rem;
+}
